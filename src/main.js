@@ -16,15 +16,21 @@ let config = {
     messagingSenderId: "664945492"
 };
 
+let app;
 let firebaseApp = firebase.initializeApp(config)
 let db = firebaseApp.database()
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+firebaseApp.auth().onAuthStateChanged(function(user) {
+  if (!app) {
+    /* eslint-disable no-new */
+    app = new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: { App }
+    })
+  }
+});
+
