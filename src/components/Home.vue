@@ -1,14 +1,18 @@
 <template>
   <div>
-    <h3>{{ msg }}</h3>
-    <button v-on:click="logout">Log out</button>    
+    <navbar></navbar>
   </div>
 </template>
 <script>
 import firebase from 'firebase';
+import Navbar from '@/components/shared/Navbar'
+import Vue from 'vue';
+
+Vue.component('navbar', Navbar);
 
 export default {
   name: 'home',
+  // conponents: { 'navbar': Navbar },
   data () {
     return {
       msg: 'Welcome ))'
