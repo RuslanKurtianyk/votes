@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+input, button {
+    background: transparent;
+    border: 0;
+    &:focus {
+        outline: none;
+    }
+}
+
