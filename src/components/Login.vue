@@ -54,8 +54,6 @@
 <style lang="scss">
   @import "../assets/styles/variables";
 
-  $default-padding: 10px;
-
   .container {
     width: 100vw;
     height: 100vh;

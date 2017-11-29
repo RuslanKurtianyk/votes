@@ -3,31 +3,22 @@
         <button class="navbar" type="button" >
           <menu-icon />
         </button>
-        <button v-on:click="logout"><logout-icon /></button>  
+       <account></account>  
     </nav>
 </template>
 <script>
-import firebase from 'firebase'
 import MenuIcon from 'vue-material-design-icons/menu'
-import LogoutIcon from 'vue-material-design-icons/logout'
+import Account from './Account'
 
 export default {
   name: 'navbar',
-  components: { MenuIcon, LogoutIcon },
-  methods: {
-    logout: function() {
-      firebase.auth().signOut().then(() => {
-        this.$router.replace('login')
-      })
-    }
-  }
+  components: { MenuIcon, Account },
+  methods: {}
 }
 </script>
 
 <style lang="scss">
   @import "../../assets/styles/variables";
-
-  $default-padding: 10px;
 
   nav {
     width: 100vw;
