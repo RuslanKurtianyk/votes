@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import firebase from 'firebase'
-import VueFire from 'vuefire'
 
 // Initialize Firebase
 let config = {

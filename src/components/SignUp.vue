@@ -28,7 +28,7 @@
           err => {
             console.log('Oops. ' + err.message)
           }
-        );
+        )
       }
     }
   }
