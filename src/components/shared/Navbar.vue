@@ -1,18 +1,18 @@
 <template>
     <nav class="navbar">
         <button class="navbar" type="button" >
-          <menu-icon />
+          <magnet-icon />
         </button>
        <account></account>  
     </nav>
 </template>
 <script>
-import MenuIcon from 'vue-material-design-icons/menu'
+import MagnetIcon from 'vue-material-design-icons/magnet'
 import Account from './Account'
 
 export default {
   name: 'navbar',
-  components: { MenuIcon, Account },
+  components: { MagnetIcon, Account },
   methods: {}
 }
 </script>

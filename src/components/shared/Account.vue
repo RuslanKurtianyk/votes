@@ -1,7 +1,7 @@
 <template>
     <div class="account">
         <div class="user-info">
-            <img :src="user.photoUrl" />
+            <img :src="photoUrl" />
             <span>{{user.name}}</span>
         </div>
         <button v-on:click="logout">
@@ -22,9 +22,13 @@ export default {
       }
   },
   computed: {
-    user () {
-      console.log(this.$store.getters.user)
+    user() {
       return this.$store.getters.user
+    },
+    photoUrl() {
+      return (this.$store.getters.user && this.$store.getters.user.photoUrl) ? 
+        this.$store.getters.user.photoUrl :
+        ''
     }
   }
 }

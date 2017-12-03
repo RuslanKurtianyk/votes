@@ -11,7 +11,7 @@
   }
 </script>
 <style lang="scss">
-  @import "./assets/styles/reset";
+  @import "./assets/styles/default";
   @import "./assets/styles/variables";
   
   body {

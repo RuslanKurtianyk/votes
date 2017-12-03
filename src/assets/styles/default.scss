@@ -11,3 +11,9 @@ input, button {
     }
 }
 
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
