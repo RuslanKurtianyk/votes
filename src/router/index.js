@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -31,7 +32,8 @@ let router = new Router({
     {
       path: '/home',
       name: 'Home',
-      component: Home
+      component: Home,
+      beforeEnter: AuthGuard
     }
   ]
 })
