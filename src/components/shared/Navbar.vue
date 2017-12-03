@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar ev-appnav">
+    <nav class="navbar">
         <button class="navbar" type="button" >
           <menu-icon />
         </button>

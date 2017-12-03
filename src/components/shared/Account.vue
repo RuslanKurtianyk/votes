@@ -1,8 +1,8 @@
 <template>
     <div class="account">
-        <div class="usur-info">
-            <img src="" />
-            <span>{{user.additionalUserInfo.profile.name}}</span>
+        <div class="user-info">
+            <img :src="user.photoUrl" />
+            <span>{{user.name}}</span>
         </div>
         <button v-on:click="logout">
             <logout-icon />
@@ -10,26 +10,21 @@
     </div>
 </template>
 <script>
-import firebase from 'firebase'
 import LogoutIcon from 'vue-material-design-icons/logout'
 
 export default {
   name: 'account',
-  props: {
-      user: {
-        type: Object,
-        validator: function(value) {
-            console.log(value);
-            return typeof value === 'object'
-        }
-      }
-    },
   components: { LogoutIcon },
   methods: {
-    logout: function() {
-      firebase.auth().signOut().then(() => {
-        this.$router.replace('login')
-      })
+    logout () {
+        this.$store.dispatch('logout')
+        this.$router.push('/')
+      }
+  },
+  computed: {
+    user () {
+      console.log(this.$store.getters.user)
+      return this.$store.getters.user
     }
   }
 }
@@ -42,5 +37,15 @@ export default {
     display: flex;
     align-items: center;
     margin-left: auto;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      img {
+        max-height: 50px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+    }
   }
 </style>

@@ -14,39 +14,32 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
-
   export default {
     name: 'login',
-    data: function() {
+    data() {
       return {
         email: '',
         password: ''
       }
     },
+    computed: {
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/home')
+        }
+      }
+    },
     methods: {
-      signIn: function() {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-          user => {
-            console.log(user);
-            this.$router.replace('home')
-          },
-          err => {
-            console.log('Oops. ' + err.message)
-          }
-        );
+      signIn () {
+        this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
       },
-      googleSignIn: function () {
-       const provider = new firebase.auth.GoogleAuthProvider();
-       firebase.auth().signInWithPopup(provider).then(
-          user => {
-            console.log(user);
-            this.$router.replace('home')
-          },
-          err => {
-            console.log('Oops. ' + err.message)
-          }
-        )
+      googleSignIn() {
+        this.$store.dispatch('signUserInGoogle')
       }
     }
   }
@@ -94,7 +87,7 @@
       text-transform: uppercase;
 
       &.btn-submit-google {
-        background: darken($ocean, 30%);
+        background: $google-color;
       }
 
       &:hover {
