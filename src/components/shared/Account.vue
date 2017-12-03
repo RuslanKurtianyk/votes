@@ -41,6 +41,7 @@ export default {
     .user-info {
       display: flex;
       align-items: center;
+      
       img {
         max-height: 50px;
         border-radius: 50%;
