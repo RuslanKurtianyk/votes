@@ -1,19 +1,69 @@
+@import "./variables";
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-input, button {
-    background: transparent;
-    border: 0;
-    &:focus {
-        outline: none;
-    }
+input,
+button {
+  background: transparent;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 button {
-    &:hover {
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
+.auth-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  color: $ocean;
+
+  .auth-form {
+    background: darken($primary-background-color, 10%);
+    border-radius: 5px;
+    padding: $default-padding;
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      input {
+        width: calc(100% - $default-padding * 2);
+      }
+    }
+  }
+  .form-input {
+    padding: $default-padding;
+    border: 0;
+    margin: $default-padding 0;
+    border-bottom: 2px solid $ocean;
+    background: transparent;
+  }
+  .form-button {
+    background: $ocean;
+    padding: $default-padding;
+    margin: $default-padding 0;
+    border: 5px;
+    color: $light-blue;
+    text-transform: uppercase;
+
+    &.btn-submit-google {
+      background: $google-color;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background: $grey;
+        color: $dark-grey;
+    }
+  }
+}

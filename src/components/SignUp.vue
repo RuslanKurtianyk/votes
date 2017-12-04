@@ -1,35 +1,40 @@
 <template>
-  <div class="sign-up">
-    <p>Let's create a new account!</p>
-    <input type="text" v-model="email" placeholder="Email"><br>
-    <input type="password" v-model="password" placeholder="Password"><br>
-    <button v-on:click="signUp">Sign Up</button>
-    <span>or go back to <router-link to="/login">login</router-link>.</span>
+<div class="auth-container">
+  <div class="auth-form">
+    <h3>Let's create a new account!</h3>
+     <div class="form-container">
+      <input class="form-input"type="text" v-model="email" placeholder="Email">
+      <input class="form-input" type="password" v-model="password" placeholder="Password">
+      <input class="form-input" type="password" v-model="confirmPassword" placeholder="Confirm Password">
+      <button class="form-button" :disabled="passwordMatch" v-on:click="signUp">Sign Up</button>
+    </div>
+    <p>or go back to <router-link to="/login">login</router-link>.</p>
+  </div>
   </div>
 </template>
 
 <script>
-  import firebase from 'firebase'
-
   export default {
     name: 'signUp',
-    data: function() {
+    data() {
       return {
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
+      }
+    },
+    computed: {
+      passwordMatch() {
+        return this.password == this.confirmPassword;
       }
     },
     methods: {
-      signUp: function() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-          user => {
-            this.$router.replace('hello')
-          },
-          err => {
-            console.log('Oops. ' + err.message)
-          }
-        )
+      signUp() {
+          this.$store.dispatch('signUserUp', { email: this.email, password: this.password })
       }
     }
   }
 </script>
+<style lang="scss">
+  @import "../assets/styles/default";
+</style>
