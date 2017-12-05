@@ -27,7 +27,7 @@ button {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  color: $ocean;
+  color: $white;
 
   .auth-form {
     background: darken($primary-background-color, 10%);
@@ -49,11 +49,11 @@ button {
     background: transparent;
   }
   .form-button {
-    background: $ocean;
+    background: $bright-blue;
     padding: $default-padding;
     margin: $default-padding 0;
     border: 5px;
-    color: $light-blue;
+    color: $white;
     text-transform: uppercase;
 
     &.btn-submit-google {
@@ -62,8 +62,8 @@ button {
 
     &:disabled {
         cursor: not-allowed;
-        background: $grey;
+        background: $light-grey;
         color: $dark-grey;
     }
   }
-}
+} 

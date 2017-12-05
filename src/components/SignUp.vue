@@ -21,7 +21,7 @@ Vue.use(VeeValidate)
 
   export default {
     name: 'signUp',
-    data() {
+    data () {
       return {
         email: '',
         password: '',
@@ -34,11 +34,8 @@ Vue.use(VeeValidate)
       }
     },
     methods: {
-      signUp() {
+      signUp () {
           this.$store.dispatch('signUserUp', { email: this.email, password: this.password })
-      },
-      passwordMatchValidate() {
-
       }
     }
   }

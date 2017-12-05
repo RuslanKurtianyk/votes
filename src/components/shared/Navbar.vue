@@ -25,7 +25,7 @@ export default {
     height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid $ocean;
+    border-bottom: 2px solid $dark-grey;
     background: darken($primary-background-color, 15%);
   }
 </style>
