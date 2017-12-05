@@ -41,6 +41,7 @@ export default {
     display: flex;
     align-items: center;
     margin-left: auto;
+    color: $black;
 
     .user-info {
       display: flex;

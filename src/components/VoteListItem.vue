@@ -1,27 +1,49 @@
 <template>
   <div class="vote-list-item-container">
-    <div class="wrapper">
-        <div class="header">test</div>
-        <div class="body">test</div>
+    <div class="item-wrapper">
+        <div class="header">{{name}}</div>
+        <div class="body">
+            <div class="description">
+                {{description}}
+            </div>
+            <div class="info">
+                <span>Created by </span><span>{{createdBy}}</span><span> on </span><span>{{createdDate | formatDate}}</span>
+            </div>
+        </div>
         <div class="footer">
-        test
+            <section class="participants-section">
+                <account-circle-icon /><span> - {{participantCount}}</span>
+            </section>
+            <section class="status-section">
+                <span>Status - </span> <span>{{status}}</span>            
+            </section>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import AccountCircleIcon from 'vue-material-design-icons/account-circle'
   export default {
     name: 'vote-list-item',
+    components: { AccountCircleIcon },
     data () {
       return {
-        name: '',
-        status: '',
-        participantCount: 0,
+        id: '3455747',
+        name: 'DRINK BEER',
+        status: 'In progress',
+        description: 'Go drink beer this thursday on 19-00. Legenda pub.',
+        participantCount: 6,
         createdDate: new Date(),
         createdBy: "Test User",
         time: new Date()
       }
+    },
+    filters: {
+        formatDate (value) {
+            if (!value) return ''
+            return `${value.getDate()}.${value.getMonth() + 1}.${value.getFullYear()}`
+        }
     },
     computed: {
     },
@@ -33,13 +55,59 @@
 </script>
 <style lang="scss">
 @import "../assets/styles/default";
+
 .vote-list-item-container {
-    min-width:250px;
+    min-width: $default-card-width;
     min-height: 300px;
-    width: 250px;
+    width: $default-card-width;
     height: 300px;
     background: $light-blue;
     border: 2px solid $dark-grey;
     border-radius: 5px;
+
+    .item-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+        .header {
+            font-size: 1.2em;
+            border-bottom: 2px solid $dark-grey;
+            padding: $default-padding;
+        }
+
+        .body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+            padding: $default-padding;
+            .description {
+                font-size: 2em;
+            }
+            .info {
+
+            }
+        }
+        .footer {
+            display: flex;
+            border-top: 2px solid $dark-grey;
+            section {
+                width: 50%;
+                padding: $default-padding;
+                &.participants-section {
+                    display: flex;
+                    align-items: center;
+                    border-right: 2px solid $dark-grey;
+                }
+
+                &.status-section {
+
+                }
+            }
+            
+        }
+    }
 }
 </style>
