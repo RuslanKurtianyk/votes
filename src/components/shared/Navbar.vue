@@ -21,8 +21,9 @@ export default {
   @import "../../assets/styles/variables";
 
   nav {
-    width: 100vw;
+    width: auto;
     height: 60px;
+    padding: 0 $default-padding;
     display: flex;
     align-items: center;
     border-bottom: 2px solid $dark-grey;

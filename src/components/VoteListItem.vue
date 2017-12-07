@@ -1,5 +1,5 @@
 <template>
-  <div class="vote-list-item-container">
+  <div class="vote-list-item-container" v-on:click="openVote">
     <div class="item-wrapper">
         <div class="header">{{name}}</div>
         <div class="body">
@@ -12,7 +12,7 @@
         </div>
         <div class="footer">
             <section class="participants-section">
-                <account-circle-icon /><span> - {{participantCount}}</span>
+                <emoticon-cool-icon /><span> - {{participantCount}}</span>
             </section>
             <section class="status-section">
                 <span>Status - </span> <span>{{status}}</span>            
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import AccountCircleIcon from 'vue-material-design-icons/account-circle'
+import EmoticonCoolIcon from 'vue-material-design-icons/emoticon-cool'
   export default {
     name: 'vote-list-item',
-    components: { AccountCircleIcon },
+    components: { EmoticonCoolIcon },
     data () {
       return {
         id: '3455747',
@@ -45,11 +45,12 @@ import AccountCircleIcon from 'vue-material-design-icons/account-circle'
             return `${value.getDate()}.${value.getMonth() + 1}.${value.getFullYear()}`
         }
     },
-    computed: {
-    },
-    watch: {
-    },
     methods: {
+        openVote () {
+            const id = this.id;
+            console.log("here", id);
+            this.$router.push({ path: `/vote/${id}` });
+        }
     }
   }
 </script>
@@ -64,6 +65,10 @@ import AccountCircleIcon from 'vue-material-design-icons/account-circle'
     background: $light-blue;
     border: 2px solid $dark-grey;
     border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
 
     .item-wrapper {
         display: flex;
@@ -83,11 +88,9 @@ import AccountCircleIcon from 'vue-material-design-icons/account-circle'
             justify-content: space-between;
             flex: 1;
             padding: $default-padding;
+
             .description {
                 font-size: 2em;
-            }
-            .info {
-
             }
         }
         .footer {
@@ -96,17 +99,13 @@ import AccountCircleIcon from 'vue-material-design-icons/account-circle'
             section {
                 width: 50%;
                 padding: $default-padding;
+
                 &.participants-section {
                     display: flex;
                     align-items: center;
                     border-right: 2px solid $dark-grey;
                 }
-
-                &.status-section {
-
-                }
-            }
-            
+            } 
         }
     }
 }
