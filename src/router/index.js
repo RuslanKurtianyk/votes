@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import VoteList from '@/components/VoteList'
 import VoteDetails from '@/components/VoteDetails'
+import VoteCreate from '@/components/VoteCreate'
 import firebase from 'firebase'
 import AuthGuard from './auth-guard'
 
@@ -15,11 +16,11 @@ let router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/login',
@@ -42,11 +43,16 @@ let router = new Router({
           name: 'home',
           component: VoteList
         },
-          {
-            path: '/vote/:id',
-            name: 'Vote',
-            component: VoteDetails
-          }
+        {
+          path: '/vote/:id',
+          name: 'Vote',
+          component: VoteDetails
+        },
+        {
+          path: '/vote-create',
+          name: 'VoteCreate',
+          component: VoteCreate
+        }
         ]
     }
   ]
