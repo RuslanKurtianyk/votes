@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import * as types from '../../mutation-types'
 
 const state = {
   user: null
@@ -10,67 +11,64 @@ const getters = {
 
 const actions = {
   signUserUp({ commit }, payload) {
-    commit('setLoading', true)
-    commit('clearError')
+    commit(types.SET_LOADING, true)
+    commit(types.CLEAR_ERROR)
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
-        commit('setLoading', false)
+        commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
           name: user.displayName,
           email: user.email,
           photoUrl: user.photoURL
         }
-        commit('setUser', newUser)
+        commit(types.SET_CURRENT_USER, newUser)
       })
       .catch(error => {
-        commit('setLoading', false)
-        commit('setError', error)
-        console.log(error)
+        commit(types.SET_LOADING, false)
+        commit(types.SET_ERROR, error)
       })
   },
   signUserIn({ commit }, payload) {
-    commit('setLoading', true)
-    commit('clearError')
+    commit(types.SET_LOADING, true)
+    commit(types.CLEAR_ERROR)
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
-        commit('setLoading', false)
+        commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
           name: user.displayName,
           email: user.email,
           photoUrl: user.photoURL
         }
-        commit('setUser', newUser)
+        commit(types.SET_CURRENT_USER, newUser)
       })
       .catch(error => {
-        commit('setLoading', false)
-        commit('setError', error)
-        console.log(error)
+        commit(types.SET_LOADING, false)
+        commit(types.SET_ERROR, error)
       })
   },
   signUserInGoogle({ commit }) {
-    commit('setLoading', true)
-    commit('clearError')
+    commit(types.SET_LOADING, true)
+    commit(types.CLEAR_ERROR)
     firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(user => {
-        commit('setLoading', false)
+        commit(types.SET_LOADING, false)
         const newUser = {
           id: user.uid,
           name: user.displayName,
           email: user.email,
           photoUrl: user.photoURL
         }
-        commit('setUser', newUser)
+        commit(types.SET_CURRENT_USER, newUser)
       })
       .catch(error => {
-        commit('setLoading', false)
-        commit('setError', error)
-        console.log(error)
+        commit(types.SET_LOADING, false)
+        commit(types.SET_ERROR, error)
       })
   },
   autoSignIn({ commit }, payload) {
-    commit('setUser', {
+    commit(types.SET_CURRENT_USER, {
       id: payload.uid,
       name: payload.displayName,
       email: payload.email,
@@ -79,12 +77,12 @@ const actions = {
   },
   logout({ commit }) {
     firebase.auth().signOut()
-    commit('setUser', null)
+    commit(types.SET_CURRENT_USER, null)
   }
 }
 
 const mutations = {
-  setUser(state, payload) {
+  [types.SET_CURRENT_USER] (state, payload) {
     state.user = payload
   }
 }

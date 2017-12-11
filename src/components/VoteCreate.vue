@@ -75,7 +75,7 @@
                     flex: 1;
                     border-bottom: 2px solid $dark-grey;
                 }
-            }
+            }   
         }
 
         .footer {
